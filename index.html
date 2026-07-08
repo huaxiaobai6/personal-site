@@ -1,0 +1,1422 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>景传松 · JCS</title>
+  <meta name="description" content="景传松 — Agent工程 · 多智能体系统 · LLM应用" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Questrial&display=swap" rel="stylesheet" />
+  <style>
+    /* ══════════════════════════════════════════════
+       Variables & Reset
+       ══════════════════════════════════════════════ */
+    :root {
+      --color-bg: #fcfaf8;
+      --color-ink: #26251e;
+      --color-ink-soft: #504f49;
+      --color-border: #979696;
+      --color-chip-bg: #f3f0ef;
+      --color-card-1: #efebe3;
+      --color-card-2: #f6f1ea;
+      --color-card-3: #efe8e3;
+      --color-card-4: #fbf2e9;
+      --color-card-5: #f5ede7;
+      --font-sans:
+        "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif;
+      --font-mincho: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
+      --font-display: "Questrial", "Century Gothic", "Avenir Next",
+        "MiSans", sans-serif;
+      --font-misans: "PingFang SC", -apple-system,
+        "Microsoft YaHei", sans-serif;
+      --section-max-w: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--color-bg);
+      color: var(--color-ink);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ══════════════════════════════════════════════
+       Hero
+       ══════════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      height: 592px;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      background-image: url("https://mimo.xiaomi.com/coder/assets/%E9%A3%9E%E5%A4%A94.png?v=20260610-1851");
+      background-size: 1440px 592px;
+      background-position: bottom center;
+      background-repeat: no-repeat;
+      z-index: 0;
+    }
+
+    .hero__mask {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      display: block;
+    }
+
+    .hero__logo-link {
+      position: absolute;
+      top: 23px;
+      left: 32px;
+      z-index: 3;
+      display: block;
+      text-decoration: none;
+    }
+
+    .hero__logo {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      color: var(--color-ink);
+      display: block;
+    }
+
+    .hero__divider {
+      position: absolute;
+      top: 65px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: #f3f0ef;
+      z-index: 3;
+    }
+
+    .hero__bar {
+      position: absolute;
+      top: 24px;
+      right: 25px;
+      z-index: 4;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      font-family: var(--font-misans);
+    }
+
+    .hero__nav-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0 6px;
+      padding: 8px 12px;
+      background: transparent;
+      border: none;
+      color: #000;
+      font-family: var(--font-misans);
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1;
+      text-decoration: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .hero__nav-link::after {
+      content: "";
+      position: absolute;
+      left: 4px;
+      right: 4px;
+      bottom: 0;
+      height: 2.5px;
+      background: #000;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .hero__nav-link:hover::after {
+      transform: scaleX(1);
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      max-width: 809px;
+      margin: 0 auto;
+      padding-top: 170px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .hero__heading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .hero__title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 50px;
+      font-weight: 400;
+      letter-spacing: 0.4px;
+      color: var(--color-ink);
+    }
+
+    .hero__subtitle {
+      margin: 0;
+      font-family: var(--font-mincho);
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+      line-height: 1.5;
+      color: var(--color-ink);
+      white-space: nowrap;
+      max-width: min(940px, 94vw);
+    }
+
+    .hero__subtitle .char {
+      display: none;
+    }
+    .hero__subtitle .char.is-typed {
+      display: inline;
+    }
+    .hero__subtitle .type-caret {
+      display: inline-block;
+      width: 2px;
+      height: 1.05em;
+      margin-left: 2px;
+      background: currentColor;
+      vertical-align: -0.18em;
+      animation: sub-caret 0.75s step-end infinite;
+    }
+    .hero__subtitle.is-done .type-caret {
+      animation: none;
+      opacity: 0;
+    }
+    @keyframes sub-caret {
+      50% { opacity: 0; }
+    }
+
+    .hero__desc {
+      margin: 0;
+      font-family: var(--font-misans);
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--color-ink-soft);
+      text-align: center;
+      max-width: 540px;
+    }
+
+    .ctas {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      min-width: 130px;
+      padding: 10px 41px;
+      border-radius: 46px;
+      font-family: var(--font-misans);
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.24px;
+      text-decoration: none;
+      cursor: pointer;
+      background: transparent;
+      color: var(--color-ink);
+      border: 1px solid var(--color-border);
+      transition:
+        transform 200ms ease,
+        background-color 200ms ease,
+        color 200ms ease,
+        border-color 200ms ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      background: var(--color-ink);
+      color: #fafafa;
+      border-color: var(--color-ink);
+      transform: translateY(-1px);
+    }
+
+    .btn--primary {
+      background: var(--color-ink);
+      color: #fafafa;
+      border-color: var(--color-ink);
+    }
+
+    .btn--primary:hover {
+      background: #3a3933;
+      border-color: #3a3933;
+    }
+
+    .btn__arrow {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      opacity: 0;
+      margin-left: -16px;
+      transition: opacity 200ms ease, margin-left 200ms ease;
+    }
+
+    .btn:hover .btn__arrow,
+    .btn--primary .btn__arrow {
+      opacity: 1;
+      margin-left: 10px;
+    }
+
+    /* ══════════════════════════════════════════════
+       Section Common
+       ══════════════════════════════════════════════ */
+    .section {
+      padding: 80px 0;
+      background: var(--color-bg);
+    }
+
+    .section__title {
+      margin: 0 0 50px;
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 30px;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+      color: var(--color-ink);
+    }
+
+    .section__inner {
+      width: var(--section-max-w);
+      max-width: calc(100% - 80px);
+      margin: 0 auto;
+    }
+
+    /* ══════════════════════════════════════════════
+       About — Strength Cards
+       ══════════════════════════════════════════════ */
+    .about__intro {
+      text-align: center;
+      font-family: var(--font-mincho);
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--color-ink-soft);
+      max-width: 640px;
+      margin: 0 auto 50px;
+    }
+
+    .strength-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .strength-card {
+      background: var(--color-card-1);
+      border-radius: 6px;
+      padding: 36px 32px;
+      transition: background 200ms ease, transform 200ms ease;
+    }
+
+    .strength-card:nth-child(2) { background: var(--color-card-2); }
+    .strength-card:nth-child(3) { background: var(--color-card-3); }
+    .strength-card:nth-child(4) { background: var(--color-card-4); }
+
+    .strength-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .strength-card__icon {
+      width: 32px;
+      height: 32px;
+      margin-bottom: 16px;
+      color: var(--color-ink);
+    }
+
+    .strength-card h3 {
+      margin: 0 0 10px;
+      font-family: var(--font-mincho);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--color-ink);
+    }
+
+    .strength-card p {
+      margin: 0;
+      font-family: var(--font-misans);
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--color-ink-soft);
+    }
+
+    .strength-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+
+    .strength-card__tag {
+      display: inline-block;
+      padding: 3px 10px;
+      font-family: var(--font-misans);
+      font-size: 12px;
+      background: rgba(255,255,255,0.55);
+      border-radius: 4px;
+      color: var(--color-ink);
+    }
+
+    /* ══════════════════════════════════════════════
+       Skills
+       ══════════════════════════════════════════════ */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .skill-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 32px 16px;
+      background: var(--color-chip-bg);
+      border-radius: 8px;
+      transition: background 200ms ease, transform 200ms ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .skill-item:hover {
+      background: var(--color-card-5);
+      transform: translateY(-2px);
+    }
+
+    .skill-item__icon {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .skill-item__icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .skill-item__name {
+      font-family: var(--font-misans);
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+      color: var(--color-ink);
+    }
+
+    .skill-item__level {
+      font-family: var(--font-misans);
+      font-size: 11px;
+      color: var(--color-ink-soft);
+      opacity: 0.6;
+    }
+
+    /* ══════════════════════════════════════════════
+       Projects
+       ══════════════════════════════════════════════ */
+    .project-card {
+      position: relative;
+      width: 100%;
+      min-height: 340px;
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--color-card-1);
+      display: flex;
+      align-items: stretch;
+    }
+
+    .project-card__visual {
+      flex: 0 0 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      background: rgba(255,255,255,0.3);
+    }
+
+    .project-card__visual svg {
+      width: 100%;
+      max-width: 320px;
+      height: auto;
+    }
+
+    .project-card__text {
+      flex: 1;
+      padding: 48px 44px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .project-card__role {
+      font-family: var(--font-misans);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-ink-soft);
+      opacity: 0.7;
+      letter-spacing: 1px;
+    }
+
+    .project-card h3 {
+      margin: 0;
+      font-family: var(--font-mincho);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--color-ink);
+    }
+
+    .project-card__date {
+      font-family: var(--font-misans);
+      font-size: 13px;
+      color: var(--color-ink-soft);
+      opacity: 0.6;
+    }
+
+    .project-card__desc {
+      margin: 0;
+      font-family: var(--font-misans);
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--color-ink-soft);
+    }
+
+    .project-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .project-card__tag {
+      display: inline-block;
+      padding: 4px 12px;
+      font-family: var(--font-misans);
+      font-size: 12px;
+      background: rgba(255,255,255,0.6);
+      border-radius: 4px;
+      color: var(--color-ink);
+      font-weight: 500;
+    }
+
+    .project-details {
+      margin-top: 6px;
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .project-details li {
+      position: relative;
+      padding-left: 16px;
+      font-family: var(--font-misans);
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--color-ink-soft);
+    }
+
+    .project-details li::before {
+      content: "·";
+      position: absolute;
+      left: 2px;
+      font-weight: bold;
+      color: var(--color-ink);
+    }
+
+    /* ══════════════════════════════════════════════
+       Awards
+       ══════════════════════════════════════════════ */
+    .awards-bar {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .award-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: var(--color-chip-bg);
+      border-radius: 46px;
+      font-family: var(--font-misans);
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--color-ink-soft);
+    }
+
+    /* ══════════════════════════════════════════════
+       Contact
+       ══════════════════════════════════════════════ */
+    .contact-grid {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: var(--color-chip-bg);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--color-ink);
+      font-family: var(--font-misans);
+      font-size: 15px;
+      transition: background 200ms ease, transform 200ms ease;
+    }
+
+    .contact-item:hover {
+      background: var(--color-card-5);
+      transform: translateY(-1px);
+    }
+
+    .contact-item__icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .contact-item__icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ══════════════════════════════════════════════
+       Footer
+       ══════════════════════════════════════════════ */
+    .footer {
+      background: #f5f4ef;
+      min-height: 200px;
+      padding: 40px 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.8px;
+      color: #504f49;
+      text-align: center;
+    }
+
+    .footer__links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .footer__sep {
+      color: #b1b1b1;
+      user-select: none;
+    }
+
+    .footer__link {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 0.5px;
+      transition: color 200ms ease;
+    }
+
+    .footer__link:hover {
+      color: var(--color-ink);
+    }
+
+    /* ══════════════════════════════════════════════
+       Media Queries
+       ══════════════════════════════════════════════ */
+    @media (max-width: 840px) {
+      .strength-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .project-card {
+        flex-direction: column;
+      }
+
+      .project-card__visual {
+        flex: none;
+        height: 200px;
+        padding: 20px;
+      }
+
+      .project-card__text {
+        padding: 32px 24px;
+      }
+
+      .hero__bar .hero__nav-link {
+        font-size: 13px;
+        margin: 0 3px;
+        padding: 6px 8px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        height: 500px;
+      }
+
+      .hero__logo-link {
+        top: 30px;
+        left: 20px;
+      }
+
+      .hero__logo {
+        font-size: 18px;
+      }
+
+      .hero__divider {
+        top: 62px;
+      }
+
+      .hero__bar {
+        top: 28px;
+        right: 14px;
+      }
+
+      .hero__bar .hero__nav-link {
+        font-size: 12px;
+        margin: 0 2px;
+        padding: 4px 6px;
+      }
+
+      .hero__bg {
+        top: 63px;
+        bottom: auto;
+        height: 280px;
+        background-size: auto 280px;
+      }
+
+      .hero__mask {
+        display: none;
+      }
+
+      .hero__content {
+        padding-top: 120px;
+        gap: 20px;
+      }
+
+      .hero__heading {
+        gap: 16px;
+      }
+
+      .hero__title {
+        font-size: 32px;
+      }
+
+      .hero__subtitle {
+        font-size: 15px;
+        white-space: normal;
+      }
+
+      .hero__desc {
+        font-size: 14px;
+        padding: 0 20px;
+      }
+
+      .ctas {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .btn {
+        width: 200px;
+      }
+
+      .section {
+        padding: 50px 0;
+      }
+
+      .section__title {
+        font-size: 22px;
+        margin: 0 0 30px;
+      }
+
+      .section__inner {
+        max-width: calc(100% - 32px);
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .skill-item {
+        padding: 20px 12px;
+      }
+
+      .strength-card {
+        padding: 24px 20px;
+      }
+
+      .footer {
+        min-height: 160px;
+        padding: 30px 20px;
+      }
+
+      .footer__inner {
+        font-size: 10px;
+        letter-spacing: 0.4px;
+      }
+    }
+
+    @media (hover: none) {
+      .hero__mask {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════════
+       Hero
+       ════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <canvas class="hero__mask" id="heroMask" aria-hidden="true"></canvas>
+
+    <a class="hero__logo-link" href="#hero" aria-label="JCS">
+      <span class="hero__logo">JCS</span>
+    </a>
+
+    <div class="hero__divider" aria-hidden="true"></div>
+
+    <div class="hero__bar">
+      <nav class="hero__nav" aria-label="Main navigation">
+        <a class="hero__nav-link" href="#about">关于</a>
+        <a class="hero__nav-link" href="#skills">技能</a>
+        <a class="hero__nav-link" href="#projects">项目</a>
+        <a class="hero__nav-link" href="#contact">联系</a>
+      </nav>
+    </div>
+
+    <div class="hero__content">
+      <div class="hero__heading">
+        <h1 class="hero__title">景传松</h1>
+        <p class="hero__subtitle" id="heroSubtitle">
+          Agent工程 · 多智能体系统 · LLM应用
+        </p>
+      </div>
+
+      <p class="hero__desc">
+        用代码构建智能系统 —— 从知识图谱到多 Agent 协作，探索 AI 工程的边界
+      </p>
+
+      <div class="ctas">
+        <a class="btn btn--primary" href="https://github.com/huaxiaobai6" target="_blank" rel="noreferrer noopener">
+          GitHub
+          <svg class="btn__arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M6.3333 3.66665H12.3333V9.66665" stroke="currentColor" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3.848 12.152L12.3333 3.66665" stroke="currentColor" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a class="btn" href="#projects">
+          项目
+          <svg class="btn__arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M6.3333 3.66665H12.3333V9.66665" stroke="currentColor" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3.848 12.152L12.3333 3.66665" stroke="currentColor" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a class="btn" href="mailto:2229135741@qq.com">
+          联系我
+          <svg class="btn__arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M6.3333 3.66665H12.3333V9.66665" stroke="currentColor" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3.848 12.152L12.3333 3.66665" stroke="currentColor" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════
+       About
+       ════════════════════════════ -->
+  <section class="section" id="about">
+    <div class="section__inner">
+      <h2 class="section__title">关于我</h2>
+      <p class="about__intro">
+        山西农业大学软件工程专业本科在读，专注于 Agent 工程与多智能体系统方向。
+        热爱探索 AI 驱动的工程实践，致力于用技术构建更智能的系统。
+      </p>
+
+      <div class="strength-grid">
+        <div class="strength-card">
+          <!-- Programming icon -->
+          <div class="strength-card__icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 2 30 10 30 22 16 30 2 22 2 10 16 2"/>
+              <polyline points="16 2 16 30"/>
+              <polyline points="2 10 16 18 30 10"/>
+            </svg>
+          </div>
+          <h3>编程基础扎实</h3>
+          <p>熟悉 Python、Java、Rust 编程语言，具备扎实的编程功底与工程落地能力。熟练使用 Git 工作流与代码审查，了解 CI/CD 基本流程。</p>
+          <div class="strength-card__tags">
+            <span class="strength-card__tag">Python</span>
+            <span class="strength-card__tag">Java</span>
+            <span class="strength-card__tag">Rust</span>
+            <span class="strength-card__tag">Git</span>
+            <span class="strength-card__tag">CI/CD</span>
+          </div>
+        </div>
+
+        <div class="strength-card">
+          <div class="strength-card__icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="16" cy="8" r="4"/>
+              <path d="M8 28c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+              <path d="M4 4l4 4"/>
+              <path d="M28 4l-4 4"/>
+            </svg>
+          </div>
+          <h3>AI 工具深度实践</h3>
+          <p>深度使用 OpenCode、Reasonix 等 AI 编程工具辅助开发，具备高质量 Prompt 编写能力，积累了 AI 驱动工程开发的实战经验。</p>
+          <div class="strength-card__tags">
+            <span class="strength-card__tag">OpenCode</span>
+            <span class="strength-card__tag">Reasonix</span>
+            <span class="strength-card__tag">Prompt Engineering</span>
+          </div>
+        </div>
+
+        <div class="strength-card">
+          <div class="strength-card__icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 28L16 4l12 24"/>
+              <path d="M8 20h16"/>
+            </svg>
+          </div>
+          <h3>Agent 工程全栈能力</h3>
+          <p>熟悉 Agent 交互协议（MCP、Tool Use、Function Calling），独立设计开发了 NovelGraph —— 基于知识图谱的多 Agent 协作长篇小说生成系统。</p>
+          <div class="strength-card__tags">
+            <span class="strength-card__tag">MCP</span>
+            <span class="strength-card__tag">Multi-Agent</span>
+            <span class="strength-card__tag">LangChain</span>
+            <span class="strength-card__tag">知识图谱</span>
+          </div>
+        </div>
+
+        <div class="strength-card">
+          <div class="strength-card__icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="6" width="28" height="20" rx="2"/>
+              <path d="M10 14h12"/>
+              <path d="M10 18h8"/>
+              <path d="M10 22h4"/>
+            </svg>
+          </div>
+          <h3>容器化与部署</h3>
+          <p>熟悉 Docker 容器化部署与基础运维，掌握 FastAPI / Flask 模型服务开发和 RESTful API 设计，具备从开发到部署的全流程工程能力。</p>
+          <div class="strength-card__tags">
+            <span class="strength-card__tag">Docker</span>
+            <span class="strength-card__tag">FastAPI</span>
+            <span class="strength-card__tag">Flask</span>
+            <span class="strength-card__tag">Linux</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="awards-bar">
+        <span class="award-chip">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="6"/>
+            <path d="M12 14v8"/>
+            <path d="M8 18h8"/>
+          </svg>
+          蓝桥杯 Python B 组省赛三等奖
+        </span>
+        <span class="award-chip">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+          字节跳动青训营结营
+        </span>
+        <span class="award-chip">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+          </svg>
+          山西农业大学 · 软件工程 · 本科
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════
+       Skills
+       ════════════════════════════ -->
+  <section class="section" id="skills" style="padding-top:0;">
+    <div class="section__inner">
+      <h2 class="section__title">技术栈</h2>
+      <div class="skills-grid">
+        <div class="skill-item">
+          <div class="skill-item__icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M16 4L4 12v8l12 8 12-8v-8L16 4z"/>
+            </svg>
+          </div>
+          <span class="skill-item__name">Python</span>
+          <span class="skill-item__level">主力语言</span>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item__icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="4" y="4" width="24" height="24" rx="2"/>
+            </svg>
+          </div>
+          <span class="skill-item__name">Java</span>
+          <span class="skill-item__level">熟练</span>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item__icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="16" cy="16" r="12"/>
+            </svg>
+          </div>
+          <span class="skill-item__name">Rust</span>
+          <span class="skill-item__level">熟悉</span>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item__icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M8 8l16 16M24 8L8 24"/>
+            </svg>
+          </div>
+          <span class="skill-item__name">LangChain</span>
+          <span class="skill-item__level">Agent 框架</span>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item__icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M16 2v28M2 16h28"/>
+              <circle cx="16" cy="16" r="6"/>
+            </svg>
+          </div>
+          <span class="skill-item__name">知识图谱</span>
+          <span class="skill-item__level">GraphRAG</span>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item__icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="4" y="8" width="24" height="18" rx="2"/>
+              <path d="M16 8V4"/>
+              <path d="M10 8V6"/>
+              <path d="M22 8V6"/>
+            </svg>
+          </div>
+          <span class="skill-item__name">FastAPI</span>
+          <span class="skill-item__level">后端开发</span>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item__icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M16 4L4 12v8l12 8 12-8v-8L16 4z"/>
+              <path d="M4 12l12 8 12-8"/>
+              <path d="M4 12v8l12 8 12-8v-8"/>
+            </svg>
+          </div>
+          <span class="skill-item__name">MCP</span>
+          <span class="skill-item__level">Agent 协议</span>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item__icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M28 12v12H12"/>
+              <path d="M4 20V8h16"/>
+            </svg>
+          </div>
+          <span class="skill-item__name">Docker</span>
+          <span class="skill-item__level">容器化</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════
+       Projects
+       ════════════════════════════ -->
+  <section class="section" id="projects">
+    <div class="section__inner">
+      <h2 class="section__title">项目经历</h2>
+
+      <div class="project-card">
+        <div class="project-card__visual">
+          <svg viewBox="0 0 240 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- NovelGraph abstract visualization -->
+            <circle cx="120" cy="80" r="55" fill="none" stroke="#26251e" stroke-width="1.2" opacity="0.15"/>
+            <circle cx="120" cy="80" r="40" fill="none" stroke="#26251e" stroke-width="1.2" opacity="0.15"/>
+            <circle cx="120" cy="80" r="25" fill="none" stroke="#26251e" stroke-width="1.2" opacity="0.15"/>
+            <!-- Nodes -->
+            <circle cx="120" cy="40" r="8" fill="#26251e" opacity="0.6"/>
+            <circle cx="150" cy="60" r="7" fill="#26251e" opacity="0.4"/>
+            <circle cx="150" cy="100" r="7" fill="#26251e" opacity="0.4"/>
+            <circle cx="120" cy="120" r="8" fill="#26251e" opacity="0.6"/>
+            <circle cx="90" cy="100" r="7" fill="#26251e" opacity="0.4"/>
+            <circle cx="90" cy="60" r="7" fill="#26251e" opacity="0.4"/>
+            <circle cx="105" cy="55" r="5" fill="#26251e" opacity="0.3"/>
+            <circle cx="105" cy="105" r="5" fill="#26251e" opacity="0.3"/>
+            <circle cx="135" cy="105" r="5" fill="#26251e" opacity="0.3"/>
+            <circle cx="135" cy="55" r="5" fill="#26251e" opacity="0.3"/>
+            <!-- Edges -->
+            <path d="M120 48L150 60" stroke="#26251e" stroke-width="0.8" opacity="0.3"/>
+            <path d="M120 48L90 60" stroke="#26251e" stroke-width="0.8" opacity="0.3"/>
+            <path d="M120 112L150 100" stroke="#26251e" stroke-width="0.8" opacity="0.3"/>
+            <path d="M120 112L90 100" stroke="#26251e" stroke-width="0.8" opacity="0.3"/>
+            <path d="M150 60L150 100" stroke="#26251e" stroke-width="0.8" opacity="0.3"/>
+            <path d="M90 60L90 100" stroke="#26251e" stroke-width="0.8" opacity="0.3"/>
+            <path d="M90 60L105 55" stroke="#26251e" stroke-width="0.6" opacity="0.2"/>
+            <path d="M150 60L135 55" stroke="#26251e" stroke-width="0.6" opacity="0.2"/>
+            <path d="M90 100L105 105" stroke="#26251e" stroke-width="0.6" opacity="0.2"/>
+            <path d="M150 100L135 105" stroke="#26251e" stroke-width="0.6" opacity="0.2"/>
+            <path d="M105 55L120 40" stroke="#26251e" stroke-width="0.6" opacity="0.2"/>
+            <path d="M135 55L120 40" stroke="#26251e" stroke-width="0.6" opacity="0.2"/>
+            <path d="M105 105L120 120" stroke="#26251e" stroke-width="0.6" opacity="0.2"/>
+            <path d="M135 105L120 120" stroke="#26251e" stroke-width="0.6" opacity="0.2"/>
+            <!-- Center label -->
+            <text x="120" y="83" text-anchor="middle" fill="#26251e" font-family="Questrial, sans-serif" font-size="11" letter-spacing="1">NovelGraph</text>
+          </svg>
+        </div>
+        <div class="project-card__text">
+          <span class="project-card__role">独立设计 &amp; 开发</span>
+          <h3>NovelGraph</h3>
+          <span class="project-card__date">2026.05 — 至今</span>
+          <p class="project-card__desc">
+            基于知识图谱的多 Agent 协作长篇⼩说⽣成系统。将"生成故事"拆解为
+            演绎层（世界运转）与写作层（故事讲述），解决传统 AI 写作中角色一致性低、
+            情节不可控、长文质量衰减等核心问题。
+          </p>
+          <div class="project-card__tags">
+            <span class="project-card__tag">Python</span>
+            <span class="project-card__tag">LangChain</span>
+            <span class="project-card__tag">知识图谱</span>
+            <span class="project-card__tag">多 Agent 架构</span>
+            <span class="project-card__tag">Docker</span>
+          </div>
+          <ul class="project-details">
+            <li>知识图谱作为世界观事实表示，定义 5 类节点与有向关系边，全历史可追溯</li>
+            <li>角色 Agent 以图谱节点为单位自主决策，导演 Agent 调度世界而非控制角色</li>
+            <li>回合制并发架构：并行读取状态快照 → 独立决策 → 统一合并写入</li>
+            <li>冲突仲裁 + NG 否决机制，保持 Agent 自主性与叙事质量的一致性</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════
+       Contact
+       ════════════════════════════ -->
+  <section class="section" id="contact">
+    <div class="section__inner">
+      <h2 class="section__title">联系我</h2>
+      <div class="contact-grid">
+        <a class="contact-item" href="https://github.com/huaxiaobai6" target="_blank" rel="noreferrer noopener">
+          <span class="contact-item__icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+          </span>
+          GitHub
+        </a>
+        <a class="contact-item" href="mailto:2229135741@qq.com">
+          <span class="contact-item__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </span>
+          2229135741@qq.com
+        </a>
+        <span class="contact-item">
+          <span class="contact-item__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+          </span>
+          17636329829
+        </span>
+        <span class="contact-item">
+          <span class="contact-item__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          </span>
+          北京 · 期望城市
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════
+       Footer
+       ════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <span>© 2026 景传松 · JCS</span>
+      <div class="footer__links">
+        <a class="footer__link" href="https://github.com/huaxiaobai6" target="_blank" rel="noreferrer noopener">GitHub</a>
+        <span class="footer__sep">|</span>
+        <a class="footer__link" href="mailto:2229135741@qq.com">Email</a>
+        <span class="footer__sep">|</span>
+        <span>山西农业大学 · 软件工程</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ════════════════════════════
+       JavaScript
+       ════════════════════════════ -->
+  <script>
+    (function () {
+      /* ── Canvas Ink Reveal ── */
+      var hero = document.getElementById("hero");
+      var canvas = document.getElementById("heroMask");
+      if (!hero || !canvas) return;
+
+      var canHover = window.matchMedia("(hover: hover)").matches;
+      if (!canHover) return;
+
+      var ctx = canvas.getContext("2d");
+      if (!ctx) return;
+
+      var MASK = "252, 250, 248";
+      var R_START = 8;
+      var R_END = 128;
+      var R_VARY = 0.45;
+      var LIFETIME = 520;
+      var STAMP_STEP = 12;
+      var MAX_STAMPS = 160;
+      var DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+      var w = 0, h = 0;
+
+      function resize() {
+        var rect = hero.getBoundingClientRect();
+        w = rect.width;
+        h = rect.height;
+        canvas.width = Math.round(w * DPR);
+        canvas.height = Math.round(h * DPR);
+        canvas.style.width = w + "px";
+        canvas.style.height = h + "px";
+        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+        ctx.globalCompositeOperation = "source-over";
+        ctx.fillStyle = "rgb(" + MASK + ")";
+        ctx.fillRect(0, 0, w, h);
+      }
+      resize();
+      window.addEventListener("resize", resize);
+
+      var stamps = [];
+      var lastX = null, lastY = null;
+
+      function addStamp(x, y) {
+        if (stamps.length >= MAX_STAMPS) stamps.shift();
+        stamps.push({
+          x: x, y: y,
+          born: performance.now(),
+          seed: Math.random() * Math.PI * 2,
+          rmax: R_END * (1 - R_VARY + Math.random() * R_VARY)
+        });
+      }
+
+      function stampAlong(x, y) {
+        if (lastX === null) {
+          addStamp(x, y);
+        } else {
+          var dx = x - lastX;
+          var dy = y - lastY;
+          var dist = Math.hypot(dx, dy);
+          var steps = Math.max(1, Math.ceil(dist / STAMP_STEP));
+          for (var i = 1; i <= steps; i++) {
+            addStamp(lastX + (dx * i) / steps, lastY + (dy * i) / steps);
+          }
+        }
+        lastX = x;
+        lastY = y;
+      }
+
+      function carveInk(x, y, r, alpha, seed) {
+        var g = ctx.createRadialGradient(x, y, r * 0.25, x, y, r);
+        g.addColorStop(0, "rgba(0, 0, 0, " + (0.95 * alpha) + ")");
+        g.addColorStop(0.55, "rgba(0, 0, 0, " + (0.88 * alpha) + ")");
+        g.addColorStop(1, "rgba(0, 0, 0, 0)");
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        var segs = 32;
+        for (var i = 0; i <= segs; i++) {
+          var a = (i / segs) * Math.PI * 2;
+          var wob = 0.78 +
+            0.14 * Math.sin(a * 3 + seed) +
+            0.08 * Math.sin(a * 7 + seed * 2.1) +
+            0.05 * Math.sin(a * 13 + seed * 0.7);
+          var rr = r * wob;
+          var px = x + Math.cos(a) * rr;
+          var py = y + Math.sin(a) * rr;
+          if (i === 0) ctx.moveTo(px, py);
+          else ctx.lineTo(px, py);
+        }
+        ctx.closePath();
+        ctx.fill();
+      }
+
+      var running = false;
+
+      function loop() {
+        var now = performance.now();
+
+        ctx.globalCompositeOperation = "source-over";
+        ctx.fillStyle = "rgb(" + MASK + ")";
+        ctx.fillRect(0, 0, w, h);
+
+        ctx.globalCompositeOperation = "destination-out";
+        for (var i = stamps.length - 1; i >= 0; i--) {
+          var t = (now - stamps[i].born) / LIFETIME;
+          if (t >= 1) {
+            stamps.splice(i, 1);
+            continue;
+          }
+          var ease = 1 - Math.pow(1 - t, 3);
+          var r = R_START + (stamps[i].rmax - R_START) * ease;
+          var alpha = 1 - t * t;
+          carveInk(stamps[i].x, stamps[i].y, r, alpha, stamps[i].seed);
+        }
+
+        if (stamps.length) {
+          requestAnimationFrame(loop);
+        } else {
+          running = false;
+        }
+      }
+
+      function start() {
+        if (!running) {
+          running = true;
+          requestAnimationFrame(loop);
+        }
+      }
+
+      hero.addEventListener("mouseenter", function (e) {
+        var rect = hero.getBoundingClientRect();
+        lastX = e.clientX - rect.left;
+        lastY = e.clientY - rect.top;
+        stampAlong(lastX, lastY);
+        start();
+      });
+
+      hero.addEventListener("mousemove", function (e) {
+        var rect = hero.getBoundingClientRect();
+        stampAlong(e.clientX - rect.left, e.clientY - rect.top);
+        start();
+      });
+
+      hero.addEventListener("mouseleave", function () {
+        lastX = null;
+        lastY = null;
+      });
+    })();
+
+    (function () {
+      /* ── Subtitle Typewriter ── */
+      var sub = document.getElementById("heroSubtitle");
+      if (!sub) return;
+      if (window.matchMedia("(max-width: 700px)").matches) return;
+
+      var original = sub.textContent.trim();
+
+      function type() {
+        sub.style.whiteSpace = "nowrap";
+        sub.textContent = original;
+        var fullW = sub.getBoundingClientRect().width;
+        if (fullW > 0) sub.style.width = Math.ceil(fullW) + "px";
+        sub.textContent = "";
+        sub.classList.add("is-typing");
+
+        var chars = [];
+        for (var i = 0; i < original.length; i++) {
+          var s = document.createElement("span");
+          s.className = "char";
+          s.textContent = original[i];
+          sub.appendChild(s);
+          chars.push(s);
+        }
+        var caret = document.createElement("span");
+        caret.className = "type-caret";
+        caret.setAttribute("aria-hidden", "true");
+        sub.appendChild(caret);
+
+        var DELAY = 55;
+        var START = 350;
+        chars.forEach(function (c, i) {
+          setTimeout(function () { c.classList.add("is-typed"); }, START + i * DELAY);
+        });
+        setTimeout(function () { sub.classList.add("is-done"); }, START + chars.length * DELAY + 150);
+      }
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(type);
+      } else {
+        type();
+      }
+    })();
+  </script>
+</body>
+</html>
