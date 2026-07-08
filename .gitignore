@@ -1,0 +1,13 @@
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Editor
+.idea/
+.vscode/
+*.sublime-*
+
+# Dependencies (if build tools added later)
+node_modules/
