@@ -375,6 +375,80 @@
 	    }
 
 	    /* ══════════════════════════════════════════════
+	       Modal / Lightbox
+	       ══════════════════════════════════════════════ */
+	    .modal {
+	      position: fixed;
+	      inset: 0;
+	      z-index: 999;
+	      display: flex;
+	      align-items: center;
+	      justify-content: center;
+	      opacity: 0;
+	      visibility: hidden;
+	      transition: opacity 280ms ease, visibility 280ms ease;
+	    }
+
+	    .modal.is-open {
+	      opacity: 1;
+	      visibility: visible;
+	    }
+
+	    .modal__overlay {
+	      position: absolute;
+	      inset: 0;
+	      background: rgba(0,0,0,0.7);
+	      cursor: pointer;
+	    }
+
+	    .modal__content {
+	      position: relative;
+	      max-width: 90vw;
+	      max-height: 90vh;
+	      display: flex;
+	      align-items: center;
+	      justify-content: center;
+	      transform: scale(0.92);
+	      transition: transform 280ms ease;
+	    }
+
+	    .modal.is-open .modal__content {
+	      transform: scale(1);
+	    }
+
+	    .modal__img {
+	      display: block;
+	      max-width: 100%;
+	      max-height: 90vh;
+	      border-radius: 4px;
+	      box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+	    }
+
+	    .modal__close {
+	      position: absolute;
+	      top: -40px;
+	      right: 0;
+	      width: 32px;
+	      height: 32px;
+	      padding: 0;
+	      border: none;
+	      background: transparent;
+	      color: #fff;
+	      cursor: pointer;
+	      opacity: 0.7;
+	      transition: opacity 200ms ease;
+	    }
+
+	    .modal__close:hover {
+	      opacity: 1;
+	    }
+
+	    .modal__close svg {
+	      width: 100%;
+	      height: 100%;
+	    }
+
+	    /* ══════════════════════════════════════════════
 	       About — Strength Cards
 	       ══════════════════════════════════════════════ */
     .about__intro {
@@ -1138,7 +1212,7 @@
 
 	      <h2 class="section__title" style="margin:50px 0 30px;font-size:22px;">荣誉与证书</h2>
 	      <div class="certs-row">
-	        <a class="cert-card" href="assets/cert-lanqiao.jpg" target="_blank" rel="noreferrer noopener">
+	        <a class="cert-card" href="javascript:void(0)" onclick="openModal('assets/cert-lanqiao.jpg')">
 	          <div class="cert-card__icon">
 	            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
 	              <circle cx="12" cy="8" r="6"/>
@@ -1151,7 +1225,7 @@
 	            <span class="cert-card__year">2025</span>
 	          </div>
 	        </a>
-	        <a class="cert-card" href="assets/cert-bytedance.jpg" target="_blank" rel="noreferrer noopener">
+	        <a class="cert-card" href="javascript:void(0)" onclick="openModal('assets/cert-bytedance.jpg')">
 	          <div class="cert-card__icon">
 	            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
 	              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
@@ -1391,18 +1465,34 @@
   <!-- ════════════════════════════
        Footer
        ════════════════════════════ -->
-  <footer class="footer">
-    <div class="footer__inner">
-      <span>© 2026 景传松 · JCS</span>
-      <div class="footer__links">
-        <a class="footer__link" href="https://github.com/huaxiaobai6" target="_blank" rel="noreferrer noopener">GitHub</a>
-        <span class="footer__sep">|</span>
-        <a class="footer__link" href="mailto:2229135741@qq.com">Email</a>
-        <span class="footer__sep">|</span>
-        <span>山西农业大学 · 软件工程</span>
-      </div>
-    </div>
-  </footer>
+	  <footer class="footer">
+	    <div class="footer__inner">
+	      <span>© 2026 景传松 · JCS</span>
+	      <div class="footer__links">
+	        <a class="footer__link" href="https://github.com/huaxiaobai6" target="_blank" rel="noreferrer noopener">GitHub</a>
+	        <span class="footer__sep">|</span>
+	        <a class="footer__link" href="mailto:2229135741@qq.com">Email</a>
+	        <span class="footer__sep">|</span>
+	        <span>山西农业大学 · 软件工程</span>
+	      </div>
+	    </div>
+	  </footer>
+
+	  <!-- ════════════════════════════
+	       Lightbox Modal
+	       ════════════════════════════ -->
+	  <div class="modal" id="certModal" aria-hidden="true">
+	    <div class="modal__overlay" id="modalOverlay"></div>
+	    <div class="modal__content">
+	      <button class="modal__close" id="modalClose" aria-label="关闭">
+	        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+	          <line x1="18" y1="6" x2="6" y2="18"/>
+	          <line x1="6" y1="6" x2="18" y2="18"/>
+	        </svg>
+	      </button>
+	      <img class="modal__img" id="modalImg" src="" alt="证书" />
+	    </div>
+	  </div>
 
   <!-- ════════════════════════════
        JavaScript
@@ -1598,7 +1688,33 @@
       } else {
         type();
       }
-    })();
-  </script>
+	    })();
+
+	    /* ── Lightbox Modal ── */
+	    function openModal(src) {
+	      var modal = document.getElementById("certModal");
+	      var img = document.getElementById("modalImg");
+	      img.src = src;
+	      modal.classList.add("is-open");
+	      document.body.style.overflow = "hidden";
+	    }
+
+	    function closeModal() {
+	      var modal = document.getElementById("certModal");
+	      modal.classList.remove("is-open");
+	      document.body.style.overflow = "";
+	    }
+
+	    document.addEventListener("DOMContentLoaded", function() {
+	      var modal = document.getElementById("certModal");
+	      var closeBtn = document.getElementById("modalClose");
+	      var overlay = document.getElementById("modalOverlay");
+	      if (closeBtn) closeBtn.addEventListener("click", closeModal);
+	      if (overlay) overlay.addEventListener("click", closeModal);
+	      document.addEventListener("keydown", function(e) {
+	        if (e.key === "Escape") closeModal();
+	      });
+	    });
+	  </script>
 </body>
 </html>
