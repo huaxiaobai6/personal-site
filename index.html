@@ -316,6 +316,65 @@
 	    }
 
 	    /* ══════════════════════════════════════════════
+	       Certificates
+	       ══════════════════════════════════════════════ */
+	    .certs-row {
+	      display: flex;
+	      gap: 20px;
+	      justify-content: center;
+	      flex-wrap: wrap;
+	    }
+
+	    .cert-card {
+	      display: flex;
+	      align-items: center;
+	      gap: 16px;
+	      padding: 20px 28px;
+	      background: var(--color-chip-bg);
+	      border-radius: 10px;
+	      text-decoration: none;
+	      color: inherit;
+	      min-width: 260px;
+	      transition: background 200ms ease, transform 200ms ease;
+	    }
+
+	    .cert-card:hover {
+	      background: var(--color-card-5);
+	      transform: translateY(-2px);
+	    }
+
+	    .cert-card__icon {
+	      width: 40px;
+	      height: 40px;
+	      display: flex;
+	      align-items: center;
+	      justify-content: center;
+	      background: rgba(255,255,255,0.5);
+	      border-radius: 8px;
+	      flex-shrink: 0;
+	    }
+
+	    .cert-card__text {
+	      display: flex;
+	      flex-direction: column;
+	      gap: 3px;
+	    }
+
+	    .cert-card__title {
+	      font-family: var(--font-misans);
+	      font-size: 15px;
+	      font-weight: 500;
+	      color: var(--color-ink);
+	    }
+
+	    .cert-card__year {
+	      font-family: var(--font-misans);
+	      font-size: 13px;
+	      color: var(--color-ink-soft);
+	      opacity: 0.6;
+	    }
+
+	    /* ══════════════════════════════════════════════
 	       About — Strength Cards
 	       ══════════════════════════════════════════════ */
     .about__intro {
@@ -658,31 +717,7 @@
       color: var(--color-ink);
     }
 
-    /* ══════════════════════════════════════════════
-       Awards
-       ══════════════════════════════════════════════ */
-    .awards-bar {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 40px;
-    }
-
-    .award-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 20px;
-      background: var(--color-chip-bg);
-      border-radius: 46px;
-      font-family: var(--font-misans);
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--color-ink-soft);
-    }
-
-    /* ══════════════════════════════════════════════
+	    /* ══════════════════════════════════════════════
        Contact
        ══════════════════════════════════════════════ */
     .contact-grid {
@@ -1068,23 +1103,6 @@
             <span class="strength-card__tag">Linux</span>
           </div>
         </div>
-      </div>
-
-	      <div class="awards-bar" style="margin-top:0;">
-	        <a class="award-chip" href="assets/cert-lanqiao.jpg" target="_blank" rel="noreferrer noopener" style="text-decoration:none;color:inherit;cursor:pointer;">
-	          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-	            <circle cx="12" cy="8" r="6"/>
-	            <path d="M12 14v8"/>
-	            <path d="M8 18h8"/>
-	          </svg>
-	          蓝桥杯 Python B 组省赛三等奖
-	        </a>
-	        <a class="award-chip" href="assets/cert-bytedance.jpg" target="_blank" rel="noreferrer noopener" style="text-decoration:none;color:inherit;cursor:pointer;">
-	          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-	            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-	          </svg>
-	          字节跳动青训营结营
-	        </a>
 	      </div>
 	    </div>
 	  </section>
@@ -1116,6 +1134,34 @@
 	            通过蓝桥杯算法竞赛和字节跳动青训营积累了工程实战经验。
 	          </p>
 	        </div>
+	      </div>
+
+	      <h2 class="section__title" style="margin:50px 0 30px;font-size:22px;">荣誉与证书</h2>
+	      <div class="certs-row">
+	        <a class="cert-card" href="assets/cert-lanqiao.jpg" target="_blank" rel="noreferrer noopener">
+	          <div class="cert-card__icon">
+	            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+	              <circle cx="12" cy="8" r="6"/>
+	              <path d="M12 14v8"/>
+	              <path d="M8 18h8"/>
+	            </svg>
+	          </div>
+	          <div class="cert-card__text">
+	            <span class="cert-card__title">蓝桥杯 Python B 组省赛三等奖</span>
+	            <span class="cert-card__year">2025</span>
+	          </div>
+	        </a>
+	        <a class="cert-card" href="assets/cert-bytedance.jpg" target="_blank" rel="noreferrer noopener">
+	          <div class="cert-card__icon">
+	            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+	              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+	            </svg>
+	          </div>
+	          <div class="cert-card__text">
+	            <span class="cert-card__title">字节跳动青训营结营</span>
+	            <span class="cert-card__year">2025</span>
+	          </div>
+	        </a>
 	      </div>
 	    </div>
 	  </section>
