@@ -316,65 +316,8 @@
 	    }
 
 	    /* ══════════════════════════════════════════════
-	       Certificates
-	       ══════════════════════════════════════════════ */
-	    .certs {
-	      display: flex;
-	      gap: 20px;
-	      justify-content: center;
-	      flex-wrap: wrap;
-	      margin-top: 40px;
-	    }
-
-	    .cert-item {
-	      display: flex;
-	      flex-direction: column;
-	      align-items: center;
-	      gap: 10px;
-	      text-decoration: none;
-	      color: inherit;
-	      transition: transform 200ms ease;
-	    }
-
-	    .cert-item:hover {
-	      transform: translateY(-3px);
-	    }
-
-	    .cert-thumb {
-	      width: 120px;
-	      height: 160px;
-	      border-radius: 6px;
-	      overflow: hidden;
-	      background: var(--color-chip-bg);
-	      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-	      display: flex;
-	      align-items: center;
-	      justify-content: center;
-	      transition: box-shadow 200ms ease;
-	    }
-
-	    .cert-item:hover .cert-thumb {
-	      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-	    }
-
-	    .cert-thumb img {
-	      width: 100%;
-	      height: 100%;
-	      object-fit: cover;
-	      display: block;
-	    }
-
-	    .cert-label {
-	      font-family: var(--font-misans);
-	      font-size: 12px;
-	      font-weight: 500;
-	      color: var(--color-ink-soft);
-	      text-align: center;
-	    }
-
-	    /* ══════════════════════════════════════════════
 	       About — Strength Cards
-       ══════════════════════════════════════════════ */
+	       ══════════════════════════════════════════════ */
     .about__intro {
       text-align: center;
       font-family: var(--font-mincho);
@@ -1128,33 +1071,19 @@
       </div>
 
 	      <div class="awards-bar" style="margin-top:0;">
-	        <span class="award-chip">
+	        <a class="award-chip" href="assets/cert-lanqiao.jpg" target="_blank" rel="noreferrer noopener" style="text-decoration:none;color:inherit;cursor:pointer;">
 	          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 	            <circle cx="12" cy="8" r="6"/>
 	            <path d="M12 14v8"/>
 	            <path d="M8 18h8"/>
 	          </svg>
 	          蓝桥杯 Python B 组省赛三等奖
-	        </span>
-	        <span class="award-chip">
+	        </a>
+	        <a class="award-chip" href="assets/cert-bytedance.jpg" target="_blank" rel="noreferrer noopener" style="text-decoration:none;color:inherit;cursor:pointer;">
 	          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 	            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
 	          </svg>
 	          字节跳动青训营结营
-	        </span>
-	      </div>
-	      <div class="certs">
-	        <a class="cert-item" href="assets/cert-lanqiao.jpg" target="_blank" rel="noreferrer noopener">
-	          <span class="cert-thumb">
-	            <img src="assets/cert-lanqiao.jpg" alt="蓝桥杯证书" loading="lazy" />
-	          </span>
-	          <span class="cert-label">蓝桥杯证书</span>
-	        </a>
-	        <a class="cert-item" href="assets/cert-bytedance.jpg" target="_blank" rel="noreferrer noopener">
-	          <span class="cert-thumb">
-	            <img src="assets/cert-bytedance.jpg" alt="字节跳动青训营结营证书" loading="lazy" />
-	          </span>
-	          <span class="cert-label">青训营结营证书</span>
 	        </a>
 	      </div>
 	    </div>
