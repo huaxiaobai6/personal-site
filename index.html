@@ -309,14 +309,71 @@
       color: var(--color-ink);
     }
 
-    .section__inner {
-      width: var(--section-max-w);
-      max-width: calc(100% - 80px);
-      margin: 0 auto;
-    }
+	    .section__inner {
+	      width: var(--section-max-w);
+	      max-width: calc(100% - 80px);
+	      margin: 0 auto;
+	    }
 
-    /* ══════════════════════════════════════════════
-       About — Strength Cards
+	    /* ══════════════════════════════════════════════
+	       Certificates
+	       ══════════════════════════════════════════════ */
+	    .certs {
+	      display: flex;
+	      gap: 20px;
+	      justify-content: center;
+	      flex-wrap: wrap;
+	      margin-top: 40px;
+	    }
+
+	    .cert-item {
+	      display: flex;
+	      flex-direction: column;
+	      align-items: center;
+	      gap: 10px;
+	      text-decoration: none;
+	      color: inherit;
+	      transition: transform 200ms ease;
+	    }
+
+	    .cert-item:hover {
+	      transform: translateY(-3px);
+	    }
+
+	    .cert-thumb {
+	      width: 120px;
+	      height: 160px;
+	      border-radius: 6px;
+	      overflow: hidden;
+	      background: var(--color-chip-bg);
+	      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+	      display: flex;
+	      align-items: center;
+	      justify-content: center;
+	      transition: box-shadow 200ms ease;
+	    }
+
+	    .cert-item:hover .cert-thumb {
+	      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+	    }
+
+	    .cert-thumb img {
+	      width: 100%;
+	      height: 100%;
+	      object-fit: cover;
+	      display: block;
+	    }
+
+	    .cert-label {
+	      font-family: var(--font-misans);
+	      font-size: 12px;
+	      font-weight: 500;
+	      color: var(--color-ink-soft);
+	      text-align: center;
+	    }
+
+	    /* ══════════════════════════════════════════════
+	       About — Strength Cards
        ══════════════════════════════════════════════ */
     .about__intro {
       text-align: center;
@@ -1085,6 +1142,20 @@
 	          </svg>
 	          字节跳动青训营结营
 	        </span>
+	      </div>
+	      <div class="certs">
+	        <a class="cert-item" href="assets/cert-lanqiao.jpg" target="_blank" rel="noreferrer noopener">
+	          <span class="cert-thumb">
+	            <img src="assets/cert-lanqiao.jpg" alt="蓝桥杯证书" loading="lazy" />
+	          </span>
+	          <span class="cert-label">蓝桥杯证书</span>
+	        </a>
+	        <a class="cert-item" href="assets/cert-bytedance.jpg" target="_blank" rel="noreferrer noopener">
+	          <span class="cert-thumb">
+	            <img src="assets/cert-bytedance.jpg" alt="字节跳动青训营结营证书" loading="lazy" />
+	          </span>
+	          <span class="cert-label">青训营结营证书</span>
+	        </a>
 	      </div>
 	    </div>
 	  </section>
