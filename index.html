@@ -392,6 +392,102 @@
     }
 
     /* ══════════════════════════════════════════════
+       Education
+       ══════════════════════════════════════════════ */
+    .edu-card {
+      display: flex;
+      gap: 36px;
+      background: var(--color-card-1);
+      border-radius: 6px;
+      padding: 40px 44px;
+      transition: transform 200ms ease;
+    }
+
+    .edu-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .edu-card__side {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+      width: 100px;
+    }
+
+    .edu-card__year {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      color: var(--color-ink-soft);
+      white-space: nowrap;
+    }
+
+    .edu-card__badge {
+      width: 48px;
+      height: 48px;
+      color: var(--color-ink);
+      opacity: 0.6;
+    }
+
+    .edu-card__badge svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .edu-card__main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .edu-card__school {
+      margin: 0;
+      font-family: var(--font-mincho);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--color-ink);
+    }
+
+    .edu-card__major {
+      margin: 0;
+      font-family: var(--font-misans);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--color-ink-soft);
+      opacity: 0.8;
+    }
+
+    .edu-card__desc {
+      margin: 8px 0 0;
+      font-family: var(--font-misans);
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--color-ink-soft);
+    }
+
+    @media (max-width: 640px) {
+      .edu-card {
+        flex-direction: column;
+        gap: 16px;
+        padding: 28px 24px;
+      }
+
+      .edu-card__side {
+        width: auto;
+        flex-direction: row;
+      }
+
+      .edu-card__school {
+        font-size: 20px;
+      }
+    }
+
+    /* ══════════════════════════════════════════════
        Skills
        ══════════════════════════════════════════════ */
     .skills-grid {
@@ -842,6 +938,7 @@
     <div class="hero__bar">
       <nav class="hero__nav" aria-label="Main navigation">
         <a class="hero__nav-link" href="#about">关于</a>
+        <a class="hero__nav-link" href="#education">教育</a>
         <a class="hero__nav-link" href="#skills">技能</a>
         <a class="hero__nav-link" href="#projects">项目</a>
         <a class="hero__nav-link" href="#contact">联系</a>
@@ -973,31 +1070,55 @@
         </div>
       </div>
 
-      <div class="awards-bar">
-        <span class="award-chip">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="8" r="6"/>
-            <path d="M12 14v8"/>
-            <path d="M8 18h8"/>
-          </svg>
-          蓝桥杯 Python B 组省赛三等奖
-        </span>
-        <span class="award-chip">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-          </svg>
-          字节跳动青训营结营
-        </span>
-        <span class="award-chip">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
-          </svg>
-          山西农业大学 · 软件工程 · 本科
-        </span>
-      </div>
-    </div>
-  </section>
+	      <div class="awards-bar" style="margin-top:0;">
+	        <span class="award-chip">
+	          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+	            <circle cx="12" cy="8" r="6"/>
+	            <path d="M12 14v8"/>
+	            <path d="M8 18h8"/>
+	          </svg>
+	          蓝桥杯 Python B 组省赛三等奖
+	        </span>
+	        <span class="award-chip">
+	          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+	            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+	          </svg>
+	          字节跳动青训营结营
+	        </span>
+	      </div>
+	    </div>
+	  </section>
+
+	  <!-- ════════════════════════════
+	       Education
+	       ════════════════════════════ -->
+	  <section class="section" id="education" style="padding-top:0;">
+	    <div class="section__inner">
+	      <h2 class="section__title">教育经历</h2>
+	      <div class="edu-card">
+	        <div class="edu-card__side">
+	          <div class="edu-card__year">2022 — 2026</div>
+	          <div class="edu-card__badge">
+	            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+	              <path d="M16 2L4 9v6c0 6 4 11.5 12 15 8-3.5 12-9 12-15V9L16 2z"/>
+	              <polyline points="4 9 16 16 28 9"/>
+	              <line x1="16" y1="16" x2="16" y2="28"/>
+	              <line x1="8" y1="12" x2="8" y2="20"/>
+	            </svg>
+	          </div>
+	        </div>
+	        <div class="edu-card__main">
+	          <h3 class="edu-card__school">山西农业大学</h3>
+	          <p class="edu-card__major">软件工程 · 本科</p>
+	          <p class="edu-card__desc">
+	            在校期间系统学习了数据结构与算法、操作系统、计算机网络、数据库原理等计算机核心课程，
+	            并自学了 Python 后端开发、Agent 工程、知识图谱等前沿方向。
+	            通过蓝桥杯算法竞赛和字节跳动青训营积累了工程实战经验。
+	          </p>
+	        </div>
+	      </div>
+	    </div>
+	  </section>
 
   <!-- ════════════════════════════
        Skills
